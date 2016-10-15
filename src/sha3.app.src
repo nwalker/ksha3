@@ -1,7 +1,7 @@
 {application, sha3,
  [
-  {description, "Keccak (SHA-3) hash function NIF"},
-  {vsn, "1.1.0"},
+  {description, "FIPS-202 compliant SHA-3 hash function NIF"},
+  {vsn, "2.0.0"},
   {modules, [
              sha3,
              hex2bin
@@ -19,7 +19,8 @@
                   stdlib
                  ]},
   {maintainers, [
-                 "Benjamin Black"
+                 "Benjamin Black",
+                 "Adan Sanchez de Pedro"
                 ]},
   {licenses, ["Apache"]},
   {links, [{"Github", "https://github.com/aesedepece/sha3"}]},

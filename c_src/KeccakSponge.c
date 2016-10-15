@@ -40,17 +40,17 @@ void AbsorbQueue(spongeState *state)
 #ifdef ProvideFast576
     if (state->rate == 576)
         KeccakAbsorb576bits(state->state, state->dataQueue);
-    else 
+    else
 #endif
 #ifdef ProvideFast832
     if (state->rate == 832)
         KeccakAbsorb832bits(state->state, state->dataQueue);
-    else 
+    else
 #endif
 #ifdef ProvideFast1024
     if (state->rate == 1024)
         KeccakAbsorb1024bits(state->state, state->dataQueue);
-    else 
+    else
 #endif
 #ifdef ProvideFast1088
     if (state->rate == 1088)
@@ -60,12 +60,12 @@ void AbsorbQueue(spongeState *state)
 #ifdef ProvideFast1152
     if (state->rate == 1152)
         KeccakAbsorb1152bits(state->state, state->dataQueue);
-    else 
+    else
 #endif
 #ifdef ProvideFast1344
     if (state->rate == 1344)
         KeccakAbsorb1344bits(state->state, state->dataQueue);
-    else 
+    else
 #endif
         KeccakAbsorb(state->state, state->dataQueue, state->rate/64);
     state->bitsInQueue = 0;
@@ -174,7 +174,7 @@ void PadAndSwitchToSqueezingPhase(spongeState *state)
     }
     else {
         memset(state->dataQueue + (state->bitsInQueue+7)/8, 0, state->rate/8 - (state->bitsInQueue+7)/8);
-        state->dataQueue[state->bitsInQueue/8 ] |= 1 << (state->bitsInQueue % 8);
+        state->dataQueue[state->bitsInQueue/8 ] |= (0x02 | (1 << 2)) << (state->bitsInQueue % 8);
     }
     state->dataQueue[(state->rate-1)/8] |= 1 << ((state->rate-1) % 8);
     AbsorbQueue(state);
